@@ -7,11 +7,11 @@
 #                                    #
 ######################################
 
-# vhdl
-questao1.vhd
-Register4.vhd
-sevenSeg.vhd
-cronometro.vhd
+## vhdl
+#questao1.vhd
+#Register4.vhd
+#sevenSeg.vhd
+#cronometro.vhd
 
 # NASM
-SWeLED.nasm 1 1000
+#SWeLED.nasm 1 1000
