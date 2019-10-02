@@ -1,0 +1,74 @@
+|questao1
+x[0] => Or3Way:u1.x
+x[1] => Or3Way:u1.y
+x[2] => Not1:u2.x
+x[2] => And1:u4.x
+x[3] => Not1:u3.x
+x[3] => And1:u5.x
+x[4] => Or3Way:u1.z
+f << Or2Way:u11.q
+
+
+|questao1|Or3Way:u1
+y => q.IN0
+x => q.IN1
+z => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|Not1:u2
+x => q.DATAIN
+q <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|Not1:u3
+x => q.DATAIN
+q <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|And1:u4
+x => q.IN0
+y => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|And1:u5
+x => q.IN0
+y => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|Or2Way:u6
+y => q.IN0
+x => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|And1:u7
+x => q.IN0
+y => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|Not1:u8
+x => q.DATAIN
+q <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|Not1:u9
+x => q.DATAIN
+q <= x.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|And1:u10
+x => q.IN0
+y => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|questao1|Or2Way:u11
+y => q.IN0
+x => q.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+

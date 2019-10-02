@@ -1,0 +1,54 @@
+# Reading pref.tcl
+# source "/home/borg/elementos/Elementos-P1-pratica/vunit_out/test_output/lib.tb_questao1.all_2f69fefbdcbb540262da4531d0e8df5d9311ff6d/modelsim/gui.do"
+# vsim -modelsimini /home/borg/elementos/Elementos-P1-pratica/vunit_out/modelsim/modelsim.ini -wlf /home/borg/elementos/Elementos-P1-pratica/vunit_out/test_output/lib.tb_questao1.all_2f69fefbdcbb540262da4531d0e8df5d9311ff6d/modelsim/vsim.wlf -quiet -t ps -onfinish stop lib.tb_questao1(tb) -L vunit_lib -L lib -g/tb_questao1/runner_cfg="active python runner : true,enabled_test_cases : ,output path : /home/borg/elementos/Elementos-P1-pratica/vunit_out/test_output/lib.tb_questao1.all_2f69fefbdcbb540262da4531d0e8df5d9311ff6d/,tb path : /home/borg/elementos/Elementos-P1-pratica/tests/tst/,use_color : false" 
+# Start time: 14:51:12 on Oct 02,2019
+# ** Warning: (vsim-3473) Component instance "u1 : Or3Way" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u2 : Not1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u3 : Not1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u4 : And1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u5 : And1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u6 : Or2Way" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u7 : And1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u8 : Not1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u9 : Not1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u10 : And1" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: (vsim-3473) Component instance "u11 : Or2Way" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_questao1/u1 File: /home/borg/elementos/Elementos-P1-pratica/src/rtl/questao1.vhd
+# ** Warning: Design size of 20940 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Warning: (vsim-8684) No drivers exist on out port /tb_questao1/u1/f, and its initial value is not used.
+# Therefore, simulation behavior may occur that is not in compliance with
+# the VHDL standard as the initial values come from the base signal /tb_questao1/f.
+# List of VUnit commands:
+# vunit_help
+#   - Prints this help
+# vunit_load [vsim_extra_args]
+#   - Load design with correct generics for the test
+#   - Optional first argument are passed as extra flags to vsim
+# vunit_user_init
+#   - Re-runs the user defined init file
+# vunit_run
+#   - Run test, must do vunit_load first
+# vunit_compile
+#   - Recompiles the source files
+# vunit_restart
+#   - Recompiles the source files
+#   - and re-runs the simulation if the compile was successful
+add wave -position end  sim:/tb_questao1/runner_cfg
+add wave -position end  sim:/tb_questao1/x
+add wave -position end  sim:/tb_questao1/f
+add wave -position end  sim:/tb_questao1/s
+# Can't move the Now cursor.
+# Can't move the Now cursor.
+# End time: 14:52:28 on Oct 02,2019, Elapsed time: 0:01:16
+# Errors: 2, Warnings: 13

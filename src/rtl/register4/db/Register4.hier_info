@@ -1,0 +1,660 @@
+|cronometro
+enable => ~NO_FANOUT~
+clk => Register4:u3.clock
+clk => Register4:u4.clock
+a1 << sevenSeg:u5.a
+b1 << sevenSeg:u5.b
+c1 << sevenSeg:u5.c
+d1 << sevenSeg:u5.d
+e1 << sevenSeg:u5.e
+f1 << sevenSeg:u5.f
+g1 << sevenSeg:u5.g
+a2 << sevenSeg:u6.a
+b2 << sevenSeg:u6.b
+c2 << sevenSeg:u6.c
+d2 << sevenSeg:u6.d
+e2 << sevenSeg:u6.e
+f2 << sevenSeg:u6.f
+g2 << sevenSeg:u6.g
+
+
+|cronometro|BCDAdder:u1
+x[0] => bitAdder4:u1.x[0]
+x[1] => bitAdder4:u1.x[1]
+x[2] => bitAdder4:u1.x[2]
+x[3] => bitAdder4:u1.x[3]
+y[0] => bitAdder4:u1.y[0]
+y[1] => bitAdder4:u1.y[1]
+y[2] => bitAdder4:u1.y[2]
+y[3] => bitAdder4:u1.y[3]
+carryin => bitAdder4:u1.carryin
+s[0] <= bitAdder4:u4.z[0]
+s[1] <= bitAdder4:u4.z[1]
+s[2] <= bitAdder4:u4.z[2]
+s[3] <= bitAdder4:u4.z[3]
+carryout <= bitAdder4:u4.carryout
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u1
+x[0] => FullAdder:u0.a
+x[1] => FullAdder:u1.a
+x[2] => FullAdder:u2.a
+x[3] => FullAdder:u3.a
+y[0] => FullAdder:u0.b
+y[1] => FullAdder:u1.b
+y[2] => FullAdder:u2.b
+y[3] => FullAdder:u3.b
+carryin => FullAdder:u0.c
+z[0] <= FullAdder:u0.soma
+z[1] <= FullAdder:u1.soma
+z[2] <= FullAdder:u2.soma
+z[3] <= FullAdder:u3.soma
+carryout <= FullAdder:u3.vaium
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u1|FullAdder:u0
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u1|FullAdder:u1
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u1|FullAdder:u2
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u1|FullAdder:u3
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|detectGt9:u2
+x[0] => LessThan0.IN8
+x[1] => LessThan0.IN7
+x[2] => LessThan0.IN6
+x[3] => LessThan0.IN5
+carryin => adjust.OUTPUTSELECT
+adjust <= adjust.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|Mux4:u3
+x[0] => z.DATAB
+x[1] => z.DATAB
+x[2] => z.DATAB
+x[3] => z.DATAB
+y[0] => z.DATAA
+y[1] => z.DATAA
+y[2] => z.DATAA
+y[3] => z.DATAA
+sel => z.OUTPUTSELECT
+sel => z.OUTPUTSELECT
+sel => z.OUTPUTSELECT
+sel => z.OUTPUTSELECT
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u4
+x[0] => FullAdder:u0.a
+x[1] => FullAdder:u1.a
+x[2] => FullAdder:u2.a
+x[3] => FullAdder:u3.a
+y[0] => FullAdder:u0.b
+y[1] => FullAdder:u1.b
+y[2] => FullAdder:u2.b
+y[3] => FullAdder:u3.b
+carryin => FullAdder:u0.c
+z[0] <= FullAdder:u0.soma
+z[1] <= FullAdder:u1.soma
+z[2] <= FullAdder:u2.soma
+z[3] <= FullAdder:u3.soma
+carryout <= FullAdder:u3.vaium
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u4|FullAdder:u0
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u4|FullAdder:u1
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u4|FullAdder:u2
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u1|bitAdder4:u4|FullAdder:u3
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2
+x[0] => bitAdder4:u1.x[0]
+x[1] => bitAdder4:u1.x[1]
+x[2] => bitAdder4:u1.x[2]
+x[3] => bitAdder4:u1.x[3]
+y[0] => bitAdder4:u1.y[0]
+y[1] => bitAdder4:u1.y[1]
+y[2] => bitAdder4:u1.y[2]
+y[3] => bitAdder4:u1.y[3]
+carryin => bitAdder4:u1.carryin
+s[0] <= bitAdder4:u4.z[0]
+s[1] <= bitAdder4:u4.z[1]
+s[2] <= bitAdder4:u4.z[2]
+s[3] <= bitAdder4:u4.z[3]
+carryout <= bitAdder4:u4.carryout
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u1
+x[0] => FullAdder:u0.a
+x[1] => FullAdder:u1.a
+x[2] => FullAdder:u2.a
+x[3] => FullAdder:u3.a
+y[0] => FullAdder:u0.b
+y[1] => FullAdder:u1.b
+y[2] => FullAdder:u2.b
+y[3] => FullAdder:u3.b
+carryin => FullAdder:u0.c
+z[0] <= FullAdder:u0.soma
+z[1] <= FullAdder:u1.soma
+z[2] <= FullAdder:u2.soma
+z[3] <= FullAdder:u3.soma
+carryout <= FullAdder:u3.vaium
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u1|FullAdder:u0
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u1|FullAdder:u1
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u1|FullAdder:u2
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u1|FullAdder:u3
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|detectGt9:u2
+x[0] => LessThan0.IN8
+x[1] => LessThan0.IN7
+x[2] => LessThan0.IN6
+x[3] => LessThan0.IN5
+carryin => adjust.OUTPUTSELECT
+adjust <= adjust.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|Mux4:u3
+x[0] => z.DATAB
+x[1] => z.DATAB
+x[2] => z.DATAB
+x[3] => z.DATAB
+y[0] => z.DATAA
+y[1] => z.DATAA
+y[2] => z.DATAA
+y[3] => z.DATAA
+sel => z.OUTPUTSELECT
+sel => z.OUTPUTSELECT
+sel => z.OUTPUTSELECT
+sel => z.OUTPUTSELECT
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u4
+x[0] => FullAdder:u0.a
+x[1] => FullAdder:u1.a
+x[2] => FullAdder:u2.a
+x[3] => FullAdder:u3.a
+y[0] => FullAdder:u0.b
+y[1] => FullAdder:u1.b
+y[2] => FullAdder:u2.b
+y[3] => FullAdder:u3.b
+carryin => FullAdder:u0.c
+z[0] <= FullAdder:u0.soma
+z[1] <= FullAdder:u1.soma
+z[2] <= FullAdder:u2.soma
+z[3] <= FullAdder:u3.soma
+carryout <= FullAdder:u3.vaium
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u4|FullAdder:u0
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u4|FullAdder:u1
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u4|FullAdder:u2
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|BCDAdder:u2|bitAdder4:u4|FullAdder:u3
+a => soma.IN0
+a => vaium.IN0
+a => vaium.IN0
+b => soma.IN1
+b => vaium.IN1
+b => vaium.IN0
+c => soma.IN1
+c => vaium.IN1
+c => vaium.IN1
+soma <= soma.DB_MAX_OUTPUT_PORT_TYPE
+vaium <= vaium.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3
+clock => BinaryDigit:r0.clock
+clock => BinaryDigit:r1.clock
+clock => BinaryDigit:r2.clock
+clock => BinaryDigit:r3.clock
+input[0] => BinaryDigit:r0.input
+input[1] => BinaryDigit:r1.input
+input[2] => BinaryDigit:r2.input
+input[3] => BinaryDigit:r3.input
+load => BinaryDigit:r0.load
+load => BinaryDigit:r1.load
+load => BinaryDigit:r2.load
+load => BinaryDigit:r3.load
+output[0] <= BinaryDigit:r0.output
+output[1] <= BinaryDigit:r1.output
+output[2] <= BinaryDigit:r2.output
+output[3] <= BinaryDigit:r3.output
+
+
+|cronometro|Register4:u3|BinaryDigit:r0
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u3|BinaryDigit:r0|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r0|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r1
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u3|BinaryDigit:r1|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r1|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r2
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u3|BinaryDigit:r2|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r2|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r3
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u3|BinaryDigit:r3|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u3|BinaryDigit:r3|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4
+clock => BinaryDigit:r0.clock
+clock => BinaryDigit:r1.clock
+clock => BinaryDigit:r2.clock
+clock => BinaryDigit:r3.clock
+input[0] => BinaryDigit:r0.input
+input[1] => BinaryDigit:r1.input
+input[2] => BinaryDigit:r2.input
+input[3] => BinaryDigit:r3.input
+load => BinaryDigit:r0.load
+load => BinaryDigit:r1.load
+load => BinaryDigit:r2.load
+load => BinaryDigit:r3.load
+output[0] <= BinaryDigit:r0.output
+output[1] <= BinaryDigit:r1.output
+output[2] <= BinaryDigit:r2.output
+output[3] <= BinaryDigit:r3.output
+
+
+|cronometro|Register4:u4|BinaryDigit:r0
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u4|BinaryDigit:r0|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r0|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r1
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u4|BinaryDigit:r1|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r1|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r2
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u4|BinaryDigit:r2|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r2|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r3
+clock => FlipFlopD:c2.clock
+input => Mux2Way:c1.b
+load => Mux2Way:c1.sel
+output <= FlipFlopD:c2.q
+
+
+|cronometro|Register4:u4|BinaryDigit:r3|Mux2Way:c1
+a => tmp1.IN0
+b => tmp2.IN0
+sel => tmp2.IN1
+sel => tmp1.IN1
+q <= q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|Register4:u4|BinaryDigit:r3|FlipFlopD:c2
+clock => q~reg0.CLK
+d => q~reg0.DATAIN
+clear => q~reg0.ACLR
+clear => q.IN0
+preset => q.IN1
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|sevenSeg:u5
+H[0] => ~NO_FANOUT~
+H[1] => ~NO_FANOUT~
+H[2] => ~NO_FANOUT~
+H[3] => ~NO_FANOUT~
+a <= a.DB_MAX_OUTPUT_PORT_TYPE
+b <= b.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+e <= e.DB_MAX_OUTPUT_PORT_TYPE
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+g <= comb.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|cronometro|sevenSeg:u6
+H[0] => ~NO_FANOUT~
+H[1] => ~NO_FANOUT~
+H[2] => ~NO_FANOUT~
+H[3] => ~NO_FANOUT~
+a <= a.DB_MAX_OUTPUT_PORT_TYPE
+b <= b.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+e <= e.DB_MAX_OUTPUT_PORT_TYPE
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+g <= comb.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -9,7 +9,7 @@
 
 ## vhdl
 #questao1.vhd
-#Register4.vhd
+Register4.vhd
 #sevenSeg.vhd
 #cronometro.vhd
 
